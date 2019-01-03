@@ -3,10 +3,10 @@
  */
 
 class ListNode {
-  constructor(element) {
-    this.element = element;
-    this.next = null; //后继指针
-  }
+    constructor(element) {
+        this.element = element;
+        this.next = null; //后继指针
+    }
 }
 
 class LinkedList {
@@ -92,7 +92,8 @@ class LinkedList {
 
     /**
      * 反转单链表
-     * https://leetcode-cn.com/problems/reverse-linked-list/
+     * 英文版:https://leetcode.com/problems/reverse-linked-list/
+     * 中文版:https://leetcode-cn.com/problems/reverse-linked-list/
      * 输入: 1->2->3->4->5->NULL
      * 输出: 5->4->3->2->1->NULL
      */
@@ -110,7 +111,8 @@ class LinkedList {
 
     /**
      * 两两交换链表中的节点 给定 1->2->3->4, 你应该返回 2->1->4->3(需要交换当前两个节点及关联当前节点的前一个节点)
-     * https://leetcode-cn.com/problems/swap-nodes-in-pairs/
+     * 英文版:https://leetcode.com/problems/swap-nodes-in-pairs
+     * 中文版:https://leetcode-cn.com/problems/swap-nodes-in-pairs/
      */
     swapPairs() {
         if (!this.head || !this.head.next) return;
@@ -118,30 +120,31 @@ class LinkedList {
         let prevNode = pHead;//两两交换节点的前驱结点
         let currentNode = this.head;
         prevNode.next = currentNode;
-        let node1,node2;
-        while (prevNode.next !== null && prevNode.next.next!==null){
+        let node1, node2;
+        while (prevNode.next !== null && prevNode.next.next !== null) {
             node1 = prevNode.next;//当前节点
-            node2= node1.next;//下一个节点
+            node2 = node1.next;//下一个节点
             prevNode.next = node2;//将前驱结点的next指向下一个节点 注意:首次循环时prevNode与pHead指向同一个内存地址，更新pHead节点，指向交换后的head节点
             node1.next = node2.next;//交换两个节点的next 注意:必须先交换next 在执行下面一步，否则会死循环
             node2.next = node1;//将交换后的节点的next指向 交换前的前驱结点
             prevNode = node1;//更新两两交换节点的前驱结点 指向一个新的对象与pHead节点失去关联
         }
-        this.head =  pHead.next;//更新head
+        this.head = pHead.next;//更新head
     }
 
     /**
      * 判断链表中是否有环 使用快慢指针 快的追上慢的则有环
-     * https://leetcode-cn.com/problems/linked-list-cycle/
+     * 英文版:https://leetcode.com/problems/linked-list-cycle
+     * 中文版:https://leetcode-cn.com/problems/linked-list-cycle/
      */
-    hasCycle(){
+    hasCycle() {
         let slow = this.head;
-        let fast = this.head; 
-        while(fast!==null&&fast.next!==null){
+        let fast = this.head;
+        while (fast !== null && fast.next !== null) {
             slow = slow.next;
             fast = fast.next.next;
-            if(slow===fast){
-                return true;
+            if (slow === fast) {
+                return slow;
             }
         }
         return false;
@@ -149,12 +152,13 @@ class LinkedList {
 
     /**
      * 返回链表的中间结点 如果有两个中间结点，则返回第二个中间结点 使用快慢指针 快的遍历完了 慢指针刚好指向中间节点
-     * https://leetcode-cn.com/problems/middle-of-the-linked-list/
+     * 英文版:https://leetcode.com/problems/middle-of-the-linked-list/
+     * 中文版:https://leetcode-cn.com/problems/middle-of-the-linked-list/
      */
-    middleNode(){
+    middleNode() {
         let slow = this.head;
         let fast = this.head;
-        while (fast !== null && fast.next !== null){
+        while (fast !== null && fast.next !== null) {
             slow = slow.next;
             fast = fast.next.next;
         }
@@ -163,14 +167,15 @@ class LinkedList {
 
     /**
      * 删除链表的倒数第N个节点 使用快慢两个指针 快指针先向前行走N步 然后快,慢指针同时开始行走保持恒定的间隔 快指针到达链表末尾时  慢指针刚好处于倒数第N个节点的位置
-     * https://leetcode-cn.com/problems/remove-nth-node-from-end-of-list/ 给定的 n 保证是有效的。
+     * 英文版:https://leetcode-cn.com/problems/remove-nth-node-from-end-of-list/ 给定的 n 保证是有效的。
+     * 中文版:https://leetcode-cn.com/problems/remove-nth-node-from-end-of-list/ 给定的 n 保证是有效的。
      */
-    removeNthFromEnd(n){
+    removeNthFromEnd(n) {
         let startNode = new ListNode();
         startNode.next = this.head;
         let slow = startNode;
         let fast = startNode;
-        for (var i = 1; i <= n;i++){
+        for (var i = 1; i <= n; i++) {
             fast = fast.next;
         }
         while (fast.next !== null) {//判断快指针是否到达最后一个结点
@@ -179,7 +184,28 @@ class LinkedList {
         }
         slow.next = slow.next.next;//删除倒数第N个节点 注意:slow指向当前需要删除的节点的前驱节点 
         return startNode.next;
+    }
 
+    /**
+     * 返回链表开始入环的第一个节点。 如果链表无环，则返回 null
+     * 英文版:https://leetcode.com/problems/linked-list-cycle-ii/
+     * 中文版:https://leetcode-cn.com/problems/linked-list-cycle-ii/
+     * 原理:https://www.youtube.com/watch?time_continue=2&v=zbozWoMgKW0
+     * 
+     */
+    detectCycle() {
+        let meetNode = this.hasCycle();
+        if (!meetNode) {
+            return null;
+        } else {
+            let slow = this.head;
+            let fast = meetNode;
+            while (slow !== fast) {
+                slow = slow.next;
+                fast = fast.next;
+            }
+            return slow;
+        }
     }
 
 }
@@ -204,3 +230,4 @@ _LinkedList.display();
 _LinkedList.swapPairs();
 _LinkedList.display();
 console.log("链表的中心节点为:" + JSON.stringify(_LinkedList.middleNode()));
+console.log(_LinkedList.detectCycle())
