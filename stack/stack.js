@@ -80,7 +80,7 @@ class expressionEvaluation {
     calculateEvaluation(str) {
         let _str = "";
         for (var i = 0; i < str.length; i++) {
-            let value = str.charAt(i);
+            let value = str[i];
             let operationNum = this.operationNum[value];
             if (operationNum) { //处理运算符
                 this.dataStack.push(_str * 1); //数字入操作数栈
@@ -136,3 +136,27 @@ class expressionEvaluation {
 
 let _expressionEvaluation = new expressionEvaluation();
 console.log("12/3*4+5-67+82-12/5/4=" + _expressionEvaluation.calculateEvaluation("12/3*4+5-67+82-12/5/4"));
+
+/**
+ * 判断字符串中括号是否合法
+ */
+function is_leagl_brackets(string) {
+    var stack = new StackBasedArray();
+    for (var i = 0; i < string.length; i++) {
+        if (string[i] === "(") {
+            stack.push(string[i]);
+        } else if (string[i] === ")") {
+            // 如果为空,就说明没有左括号与之抵消
+            if (stack.isEmpty()) {
+                return false;
+            } else {
+                // 将栈顶的元素弹出
+                stack.pop();
+            }
+        }
+    }
+    return stack.size() === 0;
+}
+console.log(is_leagl_brackets("()()))"));
+console.log(is_leagl_brackets("sdf(ds(ew(we)rw)rwqq)qwewe"));
+console.log(is_leagl_brackets("()()sd()(sd()fw))("));
