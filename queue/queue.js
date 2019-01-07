@@ -8,31 +8,52 @@ class QueueBasedArray {
     
     // 向队列列尾部添加⼀一个元素
     enqueue(item) {
-        items.push(item);
+        this.items.push(item);
     };
     // 移除队列列头部的元素
     dequeue() {
-        return items.shift();
+        return this.items.shift();
     };
     // 返回队列列头部的元素
     head() {
-        return items[0];
+        return this.items[0];
     }
     // 返回队列列⼤大⼩小
     size() {
-        return items.length;
+        return this.items.length;
     }
     // clear
     clear() {
-        items = [];
+        this.items = [];
     }
     // isEmpty 判断是否为空队列列
     isEmpty() {
-        return items.length == 0;
+        return this.items.length == 0;
     }
 };
 
 /**
  * 约瑟夫环
- * 原理:
+ * 说明:有一个数组a[100]，存放0-99；要求每隔两个数字删除一个数，到末尾是循环到开头继续进行，求最后一个被删除的数
  */
+
+function Joseph_ring(params) {
+    var Joseph_queue = new QueueBasedArray();
+    for (var i = 0; i < params.length;i++){//将元素插入队列
+        Joseph_queue.enqueue(params[i]);
+    }
+    var num = 1;
+    while (Joseph_queue.size()>1){//队列只有一个元素时终止循环
+        var item = Joseph_queue.dequeue();//从队列头部删除一个元素
+        if(num%3!==0){//判断当前元素是不是需要删除
+            Joseph_queue.enqueue(item);//将不需要删除的队列头部元素插入队列尾部 形成环
+        }
+        num++;
+    }
+    return Joseph_queue.head();//将结果返回
+}
+var list =[];
+for(var i=0;i<100;i++){
+    list.push(i);
+}
+console.log(Joseph_ring(list));
