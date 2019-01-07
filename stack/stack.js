@@ -185,7 +185,7 @@ function calc_exp(params) {
     for (var i = 0; i < params.length; i++) {
         var item = params[i];
         let totalNum = 0;
-        if (operationType.indexOf(item) >= 0) {//处理操作符
+        if (operationType.indexOf(item) >= 0) { //处理操作符
             let num2 = stack.pop();
             let num1 = stack.pop();
             switch (item) {
@@ -228,7 +228,7 @@ class browserStack {
 
     pushHistory(str) {
         this.stackX.push(str)
-        this.stackY.clear()//访问新页面 清空栈
+        this.stackY.clear() //访问新页面 清空栈
         this.displayAllStack()
     }
 
@@ -274,3 +274,35 @@ browser.forward()
 browser.pushHistory('www.new.com')
 browser.back()
 browser.forward()
+
+/**
+ * 实现一个有min方法的栈，除了常见的push，pop操作，提供一个min方法返回栈里最小的元素，且时间复杂度为O(1)
+ * 原理:使用两个栈，normalStack正常压栈，出栈。minStack压栈时将当前最小的元素压栈
+ */
+function minStack() {
+    var normalStack = new StackBasedArray();
+    var minStack = new StackBasedArray();
+
+    this.push = function (item) {
+        normalStack.push(item);
+        // minStack为空或者栈顶元素大于item
+        if (minStack.isEmpty() || item < minStack.top()) {
+            minStack.push(item);
+        } else {
+            //将最小元素压栈 兼容pop方法
+            minStack.push(minStack.top());
+        }
+    }
+
+    // 弹出栈顶元素
+    this.pop = function () {
+        normalStack.pop();
+        minStack.pop();
+    };
+
+    // 返回栈的最小值
+    this.min = function () {
+        return minStack.top();
+    };
+
+}
