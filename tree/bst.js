@@ -37,7 +37,7 @@ class BST {
      * 向二分搜索树添加新元素
      */
     add(element) {
-        if (this.root === null) {//添加根节点
+        if (this.root === null) { //添加根节点
             this.root = new TreeNode(element);
             this.size++;
         } else {
@@ -49,7 +49,7 @@ class BST {
      * 向二分搜索树添加新元素
      */
     add2(element) {
-        this.root = this.addRecursive2(this.root,element)
+        this.root = this.addRecursive2(this.root, element)
     }
 
     /**
@@ -80,7 +80,7 @@ class BST {
      * 返回插入新节点后二分搜索树的跟节点
      */
     addRecursive2(node, element) {
-        if(node===null){
+        if (node === null) {
             this.size++;
             return new TreeNode(element);
         }
@@ -93,10 +93,34 @@ class BST {
         return node;
     }
 
+    /**
+     * 查询二分搜索树是否含有么个元素
+     */
+    contains(element) {
+        return this.containsRecursive(this.root, element)
+    }
+
+    /**
+     * 查询以node为根节点的二分搜索树是否含有么个元素，递归算法
+     */
+    containsRecursive(node, element) {
+        if (node === null) {
+            return false;
+        }
+        if (element === node.element) {
+            return true;
+        } else if (element < node.element) {
+            return this.containsRecursive(node.left, element);
+        } else {
+            return this.containsRecursive(node.right, element);
+        }
+    }
+
 }
 
 let _BST = new BST();
-_BST.add(20);
-_BST.add(30);
-_BST.add(15);
+_BST.add2(20);
+_BST.add2(30);
+_BST.add2(15);
+window._BST = _BST;
 console.log(JSON.stringify(_BST));
