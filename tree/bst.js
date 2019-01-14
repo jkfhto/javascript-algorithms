@@ -116,11 +116,87 @@ class BST {
         }
     }
 
+    /**
+     * 遍历操作
+     * 遍历操作就是把所有的节点都访问一遍
+     * 访问的原因和业务相关
+     * 遍历分类
+     * 深度优先遍历:
+     * 前序遍历: 对当前节点的遍历在对左右孩子节点的遍历之前, 遍历顺序: 当前节点 - > 左孩子 - > 右孩子
+     * 中序遍历: 对当前节点的遍历在对左右孩子节点的遍历中间, 遍历顺序: 左孩子 - > 当前节点 - > 右孩子
+     * 后序遍历: 对当前节点的遍历在对左右孩子节点的遍历之后, 遍历顺序: 左孩子 - > 右孩子 - > 当前节点
+     * 广度优先遍历:
+     * 层序遍历: 按层从左到右进行遍历
+     */
+
+    /**
+     * 前序遍历
+     */
+    preOrder() {
+        this.preOrderRecursive(this.root);
+    }
+
+    /**
+     * 前序遍历以node为根节点的二分搜索树， 递归算法
+     */
+    preOrderRecursive(node) {
+        if (node === null) {
+            return;
+        }
+        console.log(node.element);
+        this.preOrderRecursive(node.left);
+        this.preOrderRecursive(node.right);
+    }
+
+    /**
+     * 中序遍历
+     */
+    inOrder() {
+        this.inOrderRecursive(this.root);
+    }
+
+    /**
+     * 中序遍历以node为根节点的二分搜索树， 递归算法
+     */
+    inOrderRecursive(node) {
+        if (node === null) {
+            return;
+        }
+        this.inOrderRecursive(node.left);
+        console.log(node.element);
+        this.inOrderRecursive(node.right);
+    }
+
+    /**
+     * 后序遍历
+     */
+    postOrder() {
+        this.postOrderRecursive(this.root);
+    }
+
+    /**
+     * 后序遍历以node为根节点的二分搜索树， 递归算法
+     */
+    postOrderRecursive(node) {
+        if (node === null) {
+            return;
+        }
+        this.postOrderRecursive(node.left);
+        this.postOrderRecursive(node.right);
+        console.log(node.element);
+    }
+
+
 }
 
 let _BST = new BST();
 _BST.add2(20);
 _BST.add2(30);
 _BST.add2(15);
+_BST.add2(33);
+_BST.add2(12);
+_BST.add2(16);
 window._BST = _BST;
-console.log(JSON.stringify(_BST));
+console.log("前序遍历：" + _BST.preOrder());
+console.log("中序遍历：" + _BST.inOrder());
+console.log("后序遍历：" + _BST.postOrder());
