@@ -7,7 +7,7 @@ module.exports = {
         contentBase: "./dist", //设置静态服务器文件目录
         open: true, //自动打开浏览器
     },
-    mode: "production",
+    mode: "development",
     entry: "./bst.js",
     output: {
         path: path.resolve(__dirname, "dist"),
