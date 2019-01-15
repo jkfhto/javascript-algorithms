@@ -12,6 +12,7 @@
  */
 
 import { StackBasedArray } from "../stack/stack2";
+import { QueueBasedArray } from "../queue/queue";
 
 class TreeNode {
     constructor(element) {
@@ -198,8 +199,8 @@ class BST {
         let _StackBasedArray = new StackBasedArray();
         _StackBasedArray.push(this.root);
         while (!_StackBasedArray.isEmpty()) {
-            let curNode = _StackBasedArray.pop();
-            console.log(curNode);
+            let curNode = _StackBasedArray.pop(); //移除栈顶的元素
+            console.log(curNode.element);
             if (curNode.right !== null) {
                 _StackBasedArray.push(curNode.right); //压人右孩子
             }
@@ -213,6 +214,9 @@ class BST {
      * 层序遍历
      * 按层从左到右进行遍历
      * 广度优先遍历
+     * 广度优先遍历的意义:
+     * 更快找到问题的解
+     * 常用于算法设计中 - 最短路径
      */
 
     /**
@@ -220,10 +224,10 @@ class BST {
      * 层序遍历, 从左到右一层一层遍历
      * 借助队列实现
      */
-    levelOrder() {
+    levelOrder(){
         let _QueueBasedArray = new QueueBasedArray();
         _QueueBasedArray.enqueue(this.root);
-        while (!_QueueBasedArray.isEmpty()) {
+        while (!_QueueBasedArray.isEmpty()){
             let curNode = _QueueBasedArray.dequeue(); //移除队列头部的元素
             console.log(curNode.element);
             if (curNode.left !== null) {
@@ -234,6 +238,95 @@ class BST {
             }
         }
     }
+    
+    /**
+     * 查找二分搜索树中最小元素
+     */
+    minimum(){
+        if (this.isEmpty()){
+            throw("二分搜索树为空没有最小值！");
+        }else{
+            return this.minimumRecursive(this.root);
+        }
+    }
+
+    minimumRecursive(node){
+        if(node.left===null){
+            return node;
+        }
+        return this.minimumRecursive(node.left);
+    }
+
+    /**
+     * 查找二分搜索树中最大元素
+     */
+    maximum() {
+        if (this.isEmpty()) {
+            throw("二分搜索树为空没有最大值！");
+        } else {
+            return this.maximumRecursive(this.root);
+        }
+    }
+
+    maximumRecursive(node) {
+        if (node.right === null) {
+            return node;
+        }
+        return this.maximumRecursive(node.right);
+    }
+
+    /**
+     * 删除最小值
+     * 在删除最小节点之前, 先要找到这个最小节点, 根据二分搜索树的特性可知, 从根节点一直往左找, 最后一个没有左子树的节点一定就是整棵树的最小值。
+     * 对于删除最小值时, 存在两种情况:
+     * 最小值就是一个叶子节点, 直接删除该节点即可
+     * 如果最小值所在的节点还有右子树, 则用右子树的根节点替换当前节点即可
+     */
+
+    /**
+     * 删除二分搜索树中最小值所在的节点，并返回该节点
+     */
+    removeMin(){
+        let res = this.minimum();//获取最小值
+        this.root = this.removeMinRecursive(this.root);//删除最小值所在的节点
+        return res;//返回最小值
+    }
+    
+    /**
+     * 删除以node为根节点的二分搜索树中的最小节点，递归算法
+     * 返回删除节点后新的二分搜索树的跟节点
+     */
+    removeMinRecursive(node){
+        if(node.left===null){
+            this.size--;
+            return node.right;
+        }
+        node.left = this.removeMinRecursive(node.left);
+        return node;
+    }
+
+    /**
+     * 删除二分搜索树中最大值所在的节点，并返回该节点
+     */
+    removeMax() {
+        let res = this.maximum();//获取最大值
+        this.root = this.removeMaxRecursive(this.root);//删除最大值所在的节点
+        return res;//返回最大值
+    }
+
+    /**
+     * 删除以node为根节点的二分搜索树中的最大节点，递归算法
+     * 返回删除节点后新的二分搜索树的跟节点
+     */
+    removeMaxRecursive(node) {
+        if (node.right === null) {
+            this.size--;
+            return node.left;
+        }
+        node.right = this.removeMaxRecursive(node.right);
+        return node;
+    }
+
 
 }
 
@@ -244,9 +337,16 @@ _BST.add2(15);
 _BST.add2(33);
 _BST.add2(12);
 _BST.add2(16);
+_BST.add2(26);
 window._BST = _BST;
 console.log("前序遍历：" + _BST.preOrder());
 console.log("中序遍历：" + _BST.inOrder());
 console.log("后序遍历：" + _BST.postOrder());
-console.log("非递归前序遍历：" + _BST.preOrderNR());
+console.log("非递归前序遍历：" + _BST.preOrderNR())
 console.log("层序遍历：" + _BST.levelOrder());
+console.log("获取最小值：" + _BST.minimum().element);
+console.log("获取最大值：" + _BST.maximum().element);
+console.log("删除最小节点：" + _BST.removeMin().element);
+console.log("删除最小节点：" + _BST.removeMin().element);
+console.log("删除最大节点：" + _BST.removeMax().element);
+console.log("删除最大节点：" + _BST.removeMax().element);
