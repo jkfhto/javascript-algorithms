@@ -11,6 +11,8 @@
  * 6:二分搜索树天然的具有递归特性
  */
 
+import { StackBasedArray } from "../stack/stack2";
+
 class TreeNode {
     constructor(element) {
         this.element = element;
@@ -131,6 +133,7 @@ class BST {
 
     /**
      * 前序遍历
+     * 最自然，最常用的遍历方式
      */
     preOrder() {
         this.preOrderRecursive(this.root);
@@ -150,6 +153,7 @@ class BST {
 
     /**
      * 中序遍历
+     * 二分搜索树中序遍历的结果是顺序的
      */
     inOrder() {
         this.inOrderRecursive(this.root);
@@ -169,6 +173,7 @@ class BST {
 
     /**
      * 后序遍历
+     * 后序遍历的一个应用: 为二分搜索树释放内存
      */
     postOrder() {
         this.postOrderRecursive(this.root);
@@ -186,6 +191,23 @@ class BST {
         console.log(node.element);
     }
 
+    /**
+     * 二分搜索树的非递归前序遍历
+     */
+    preOrderNR() {
+        let _StackBasedArray = new StackBasedArray();
+        _StackBasedArray.push(this.root);
+        while (!_StackBasedArray.isEmpty()) {
+            let curNode = _StackBasedArray.pop();
+            console.log(curNode);
+            if (curNode.right !== null) {
+                _StackBasedArray.push(curNode.right); //压人右孩子
+            }
+            if (curNode.left !== null) {
+                _StackBasedArray.push(curNode.left); //压人左孩子
+            }
+        }
+    }
 
 }
 
@@ -200,3 +222,4 @@ window._BST = _BST;
 console.log("前序遍历：" + _BST.preOrder());
 console.log("中序遍历：" + _BST.inOrder());
 console.log("后序遍历：" + _BST.postOrder());
+console.log("非递归前序遍历：" + _BST.preOrderNR())
