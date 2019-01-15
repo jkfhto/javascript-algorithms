@@ -209,6 +209,32 @@ class BST {
         }
     }
 
+    /**
+     * 层序遍历
+     * 按层从左到右进行遍历
+     * 广度优先遍历
+     */
+
+    /**
+     * 二分搜索树的层序遍历
+     * 层序遍历, 从左到右一层一层遍历
+     * 借助队列实现
+     */
+    levelOrder() {
+        let _QueueBasedArray = new QueueBasedArray();
+        _QueueBasedArray.enqueue(this.root);
+        while (!_QueueBasedArray.isEmpty()) {
+            let curNode = _QueueBasedArray.dequeue(); //移除队列头部的元素
+            console.log(curNode.element);
+            if (curNode.left !== null) {
+                _QueueBasedArray.enqueue(curNode.left); //左孩子入队列
+            }
+            if (curNode.right !== null) {
+                _QueueBasedArray.enqueue(curNode.right); //右孩子入队列
+            }
+        }
+    }
+
 }
 
 let _BST = new BST();
@@ -222,4 +248,5 @@ window._BST = _BST;
 console.log("前序遍历：" + _BST.preOrder());
 console.log("中序遍历：" + _BST.inOrder());
 console.log("后序遍历：" + _BST.postOrder());
-console.log("非递归前序遍历：" + _BST.preOrderNR())
+console.log("非递归前序遍历：" + _BST.preOrderNR());
+console.log("层序遍历：" + _BST.levelOrder());
