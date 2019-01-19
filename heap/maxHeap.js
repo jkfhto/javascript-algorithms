@@ -156,6 +156,22 @@ class maxHeap{
 }
 
 let _maxHeap = new maxHeap();
+for (var i = 0; i < 100000; i++) {
+    _maxHeap.add(Math.floor(Math.random() * 1000000));
+}
+let _arr = [];
+for (var i = 0; i < 100000; i++) {
+    _arr[i] = _maxHeap.extractMax();
+}
+
+for (var i = 1; i < 100000; i++) {
+    if (_arr[i - 1] < _arr[i]) {
+        throw ("有错")
+    }
+}
+console.log("堆实现正确");
+
+let _maxHeap = new maxHeap();
 _maxHeap.add(28);
 _maxHeap.add(30);
 _maxHeap.add(16);
