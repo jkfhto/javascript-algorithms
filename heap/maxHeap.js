@@ -163,12 +163,12 @@ class maxHeap{
      */
     init(arr){
         this.heapArray = new Array(arr.length);
-        let heapLength = this.getSize();
+        let heapLength = arr.length;
         // 填充this.heapArray, 目前还不是一个堆
         for (var i = 0; i < heapLength; i++) {
             this.heapArray[i] = arr[i];
         }
-        var curr_pos = Math.floor((heapLength - 1) / 2);
+        var curr_pos = this.getParent(heapLength-1);// 获取最后一个分支节点
         while (curr_pos >= 0) {
             this.siftDown(curr_pos); // 局部自下向上进行调整 保证局部是一个最小堆
             curr_pos -= 1;           // 调整下一个分支节点
