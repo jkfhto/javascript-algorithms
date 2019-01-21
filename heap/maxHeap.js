@@ -146,6 +146,36 @@ class maxHeap{
     }
 
     /**
+     * 取出堆中的最大元素，放入一个新元素
+     * 原理：直接将堆顶元素替换然后进行siftDown操作，一次O(logn)的操作
+     */
+    replace(element){
+        let result = this.findMax();
+        this.heapArray[0] = element;
+        this.siftDown(0);//调整为最大堆
+        return result;
+    }
+
+    /**
+     * 将任意数组整理成堆 heapify
+     * 原理：调整算法的基本思想是找到所有的分支节点，然后根据这些分支节点的索引从大到小依次进行调整，每次调整时，进行siftDown操作，从后向前一直到根节点
+     * heapify算法时间复杂度为O(n)
+     */
+    init(arr){
+        this.heapArray = new Array(arr.length);
+        let heapLength = this.getSize();
+        // 填充this.heapArray, 目前还不是一个堆
+        for (var i = 0; i < heapLength; i++) {
+            this.heapArray[i] = arr[i];
+        }
+        var curr_pos = Math.floor((heapLength - 1) / 2);
+        while (curr_pos >= 0) {
+            this.siftDown(curr_pos); // 局部自下向上进行调整 保证局部是一个最小堆
+            curr_pos -= 1;           // 调整下一个分支节点
+        }
+    }
+
+    /**
      * 遍历堆中所有节点
      */
     display() {
@@ -156,33 +186,35 @@ class maxHeap{
 }
 
 let _maxHeap = new maxHeap();
-for (var i = 0; i < 100000; i++) {
-    _maxHeap.add(Math.floor(Math.random() * 1000000));
+for(var i=0;i<100000;i++){
+    _maxHeap.add(Math.floor(Math.random()*1000000));
 }
 let _arr = [];
-for (var i = 0; i < 100000; i++) {
+for(var i=0;i<100000;i++){
     _arr[i] = _maxHeap.extractMax();
 }
 
-for (var i = 1; i < 100000; i++) {
-    if (_arr[i - 1] < _arr[i]) {
-        throw ("有错")
+for(var i=1;i<100000;i++){
+    if(_arr[i-1]<_arr[i]){
+        throw("有错")
     }
 }
 console.log("堆实现正确");
+// _maxHeap.add(28);
+// _maxHeap.add(30);
+// _maxHeap.add(16);
+// _maxHeap.add(41);
+// _maxHeap.add(82);
+// _maxHeap.add(55);
+// _maxHeap.add(3);
+// _maxHeap.add(65);
+// _maxHeap.add(43);
 
-let _maxHeap = new maxHeap();
-_maxHeap.add(28);
-_maxHeap.add(30);
-_maxHeap.add(16);
-_maxHeap.add(41);
-_maxHeap.add(82);
-_maxHeap.add(55);
-_maxHeap.add(3);
-_maxHeap.add(65);
-_maxHeap.add(43);
+let heapArr=[28,30,16,41,82,55,3,65,43];
+_maxHeap.init(heapArr);
 _maxHeap.display();
 console.log("取出堆中最大元素："+_maxHeap.extractMax());
+_maxHeap.replace(53);
 _maxHeap.display();
 
 
