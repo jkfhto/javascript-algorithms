@@ -52,10 +52,12 @@ class StackBasedArray {
     /**
      * 打印栈
      */
-    display() {
-        for (var i = this.items.length - 1; i >= 0; i--) {
-            console.log(this.items[i]);
-        }
+    print() {
+        console.log(this.toString());
+    }
+
+    toString() {
+        return this[_items].toString();
     }
 
 }
