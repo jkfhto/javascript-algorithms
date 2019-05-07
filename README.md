@@ -6,6 +6,7 @@
 
 * [栈](stack/README.md)
 * [队列](queue/README.md)
+* [链表](linked-list/README.md)
 
 ## 算法
 
