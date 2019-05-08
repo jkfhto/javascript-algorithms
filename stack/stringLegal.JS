@@ -21,6 +21,6 @@ function is_leagl_brackets(string) {
     }
     return stack.isEmpty();
 }
-// console.log(is_leagl_brackets("()()))"));
+console.log(is_leagl_brackets("()()))"));
 console.log(is_leagl_brackets("sdf(ds(ew(we)rw)rwqq)qwewe"));
 console.log(is_leagl_brackets("()()sd()(sd()fw))("));
