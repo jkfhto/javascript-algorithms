@@ -14,3 +14,27 @@
 * 无法通过下标直接访问元素, 需要从头一个个访问, 直到找到对应的问题
 
 ![](../resources/linked-list1.png)
+
+链表的方法如下：
+
+* append， 添加一个新的元素
+* insert，在指定位置插入一个元素
+* remove，删除指定位置的节点
+* remove_head，删除首节点
+* remove_tail，删除尾节点
+* indexOf，返回指定元素的索引
+* findByIndex，返回指定索引位置的元素
+* head，返回首节点
+* tail，返回尾节点
+* length，返回链表长度
+* isEmpty，判断链表是否为空
+* clear，清空链表
+* print，打印整个链表
+
+链表的相关算法如下：
+
+* `简单` [141. 环形链表](./hasCycle.js)
+* `简单` [876. 链表的中间结点](./middleNode.js)
+* `简单` [206. 反转链表](./reverseList.js)
+* `中等` [19. 删除链表的倒数第N个节点](./removeNthFromEnd.js)
+* `中等` [24. 两两交换链表中的节点](./swapPairs.js)

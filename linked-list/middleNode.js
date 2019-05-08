@@ -15,8 +15,9 @@ function middleNode(list) {
     return slow;
 }
 const _LinkedList = new LinkedList()
-_LinkedList.insert('123', 'head')
-_LinkedList.insert('456', '123')
-_LinkedList.insert('789', 'head')
-_LinkedList.insert('abc', 'head')
+_LinkedList.append('123')
+_LinkedList.append('456')
+_LinkedList.append('789')
+_LinkedList.append('abc')
+_LinkedList.append('jjj')
 console.log("中间节点为：" + JSON.stringify(middleNode(_LinkedList)));

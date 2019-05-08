@@ -23,11 +23,9 @@ function swapPairs(list) {
 }
 
 const _LinkedList = new LinkedList()
-_LinkedList.insert('123', 'head')
-_LinkedList.insert('456', '123')
-_LinkedList.insert('789', 'head')
-_LinkedList.insert('abc', 'head')
-console.log('-------------remove item------------')
-_LinkedList.remove('456')
+_LinkedList.append('123')
+_LinkedList.append('456')
+_LinkedList.append('789')
+_LinkedList.append('abc')
 swapPairs(_LinkedList);
-_LinkedList.display();
+_LinkedList.print();

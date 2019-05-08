@@ -6,6 +6,9 @@
  */
 import { LinkedList,ListNode } from "./linkedList2";
 function removeNthFromEnd(list, n) {
+    if (n > list.length){
+        throw Error("操出范围");
+    }
     let startNode = new ListNode();
     startNode.next = list.head;
     let slow = startNode;
@@ -18,12 +21,13 @@ function removeNthFromEnd(list, n) {
         slow = slow.next;
     }
     slow.next = slow.next.next; //删除倒数第N个节点 注意:slow指向当前需要删除的节点的前驱节点 
+    list.length--;
     return startNode.next;
 }
 let _LinkedList = new LinkedList()
-_LinkedList.insert('123', 'head')
-_LinkedList.insert('456', '123')
-_LinkedList.insert('789', 'head')
-_LinkedList.insert('abc', 'head')
-_LinkedList.head = removeNthFromEnd(_LinkedList, 5)
-_LinkedList.display();
+_LinkedList.append('123')
+_LinkedList.append('456')
+_LinkedList.append('789')
+_LinkedList.append('abc')
+removeNthFromEnd(_LinkedList, 3)
+_LinkedList.print();

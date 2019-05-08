@@ -19,19 +19,10 @@ function reverseList(list) {
 }
 
 const _LinkedList = new LinkedList()
-_LinkedList.insert('123', 'head')
-_LinkedList.insert('456', '123')
-_LinkedList.insert('789', 'head')
-_LinkedList.insert('abc', 'head')
-console.log('-------------remove item------------')
-_LinkedList.remove('456')
-// _LinkedList.remove("789");
-// _LinkedList.remove("abc");
-// _LinkedList.remove("123");
-_LinkedList.display();
-console.log('-------------find by item------------')
-_LinkedList.findByValue('123')
-console.log('-------------find by index------------')
-_LinkedList.findByIndex(2)
+_LinkedList.append('123')
+_LinkedList.append('456')
+_LinkedList.append('789')
+_LinkedList.append('abc')
+_LinkedList.print();
 reverseList(_LinkedList);
-_LinkedList.display();
+_LinkedList.print();
