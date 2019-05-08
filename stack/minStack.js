@@ -9,7 +9,7 @@ function minStack() {
 
     this.push = function (item) {
         normalStack.push(item);
-        // 如果minStack为空,直接放⼊入,如果item⼩小于minStack栈顶元素,放⼊入其中
+        // 如果minStack为空,直接放⼊minStack,如果item小于minStack栈顶元素,放⼊minStack
         // 这样做的⽬目的,是保证minStack的栈顶始终保存栈的最小值
         if (minStack.isEmpty() || item < minStack.top()) {
             minStack.push(item);

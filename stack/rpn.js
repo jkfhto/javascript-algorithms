@@ -5,6 +5,12 @@
  * ["4", "13", "5", "/", "+"] 等价于(4 + (13 / 5))
  * 原理:遍历数组，如果当期元素是数字则压栈，如果当前元素是操作符则从栈顶连续弹出两个元素，并进行相应计算，将计算结果压栈。遍历完成，栈里只有一个元素，就是最终的表达式的计算结果
  */
+
+/**
+ * 说明：
+ * 整数除法只保留整数部分。
+ * 给定逆波兰表达式总是有效的。 换句话说， 表达式总会得出有效数值且不存在除数为 0 的情况。
+ */
 import { StackBasedArray } from "./stack2";
 function calc_exp(params) {
     var stack = new StackBasedArray();
@@ -26,7 +32,7 @@ function calc_exp(params) {
                     totalNum += num1 * num2;
                     break;
                 case "/":
-                    totalNum += num1 / num2;
+                    totalNum += parseInt(num1 / num2);
                     break;
             }
             //将计算结果压栈
@@ -39,5 +45,5 @@ function calc_exp(params) {
     //表达式如果是正确的,最终,栈⾥里里还有⼀一个元素,且正是表达式的计算结果
     return stack.pop();
 }
-var exp_1 = ["10", "6", "9", "3", "+", "-11", "*", "/", "*", "17", "+", "5", "+"];
+var exp_1 = ["4", "13", "5", "/", "+"];
 console.log("exp_1:" + calc_exp(exp_1));
