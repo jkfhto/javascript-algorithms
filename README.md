@@ -8,6 +8,7 @@
 * [队列](queue/README.md)
 * [链表](linked-list/README.md)
 * [集合](set/README.md)
+* [哈希表](hash-table/README.md)
 
 ## 算法
 
