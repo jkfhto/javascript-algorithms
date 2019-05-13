@@ -9,6 +9,7 @@
 * [链表](linked-list/README.md)
 * [集合](set/README.md)
 * [哈希表](hash-table/README.md)
+* [树](tree/README.md)
 
 ## 算法
 
