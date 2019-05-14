@@ -10,6 +10,8 @@
 * [集合](set/README.md)
 * [哈希表](hash-table/README.md)
 * [树](tree/README.md)
+  * [二叉搜索树](tree/binary-search-tree/README.md)
+  * [红黑树](tree/red-black-tree/README.md)
 
 ## 算法
 
