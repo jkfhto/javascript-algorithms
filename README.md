@@ -13,6 +13,7 @@
 * [树](tree/README.md)
   * [二叉搜索树](tree/binary-search-tree/README.md)
   * [红黑树](tree/red-black-tree/README.md)
+* [图](graph/README.md)
 
 ## 算法
 
