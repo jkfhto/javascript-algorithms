@@ -19,6 +19,17 @@
 
 算法是如何解决一类问题的明确规范。算法是一组精确定义操作序列的规则。
 
+`B` - 初学者， `A` - 进阶
+
+### 算法主题
+
+* **排序**
+  * `B` [冒泡排序](./algorithms/sorting/bubble-sort)
+  * `B` [选择排序](./algorithms/sorting/selection-sort)
+  * `B` [插入排序](./algorithms/sorting/insertion-sort)
+  * `B` [快速排序](./algorithms/sorting/quick-sort) - in-place (原地) 和 non-in-place 版本
+  * `B` [希尔排序](./algorithms/sorting/shell-sort)
+
 ## 复杂度分析
 
 * 什么是复杂度分析？
