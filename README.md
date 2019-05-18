@@ -23,7 +23,7 @@
 
 ### 算法主题
 
-* **排序**
+* [**排序**](./algorithms/sorting/README.md)
   * `B` [冒泡排序](./algorithms/sorting/bubble-sort)
   * `B` [选择排序](./algorithms/sorting/selection-sort)
   * `B` [插入排序](./algorithms/sorting/insertion-sort)
