@@ -116,3 +116,7 @@
 | **计数排序**          | n + r     | n + r     | n + r         | n + r     | Yes       | r - 数组里最大的数    |
 | **基数排序**          | n * k     | n * k     | n * k         | n + k     | Yes       | k - 最长 key 的升序   |
 
+## 参考
+
+- [数据结构与算法之美](https://time.geekbang.org/column/intro/126)
+- [javascript-algorithms](https://github.com/trekhleb/javascript-algorithms)
